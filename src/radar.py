@@ -53,6 +53,41 @@ def procesar_linea(linea: str) -> str:
     2) Calcular la velocidad media y compararla con los umbrales.
     3) Devolver el texto pedido.
     """
+    # Primero separo la cadena en variables, despues convierto las variables a int
+    texto = "ERROR"
+    partes_linea = linea.split(" ")
+
+    if len(partes_linea) != 3:
+        return texto
+
+    if not (partes_linea[0].isdigit() and partes_linea[1].isdigit() and partes_linea[2].isdigit()):
+        return texto
+
+    distancia_m = partes_linea[0]
+    vmax_kmh = partes_linea[1]
+    tiempo_s = partes_linea[2]
+    
+    # Las convierto a enteros
+    distancia = int(distancia_m)
+    velocidad_max = int(vmax_kmh)
+    tiempo = int(tiempo_s)
+    if distancia <= 0 or velocidad_max <= 0 or tiempo <= 0:
+        return texto
+    
+    # Calculo velocidad media
+    velocidad_media = (distancia/tiempo) * 3.6
+    
+    # Comparo velocidad media con velocidad maxima
+    diferencia = velocidad_media-velocidad_max
+    if velocidad_media <= velocidad_max:
+        texto = "OK"
+    elif velocidad_media > velocidad_max and diferencia < velocidad_max*0.2:
+        texto = "MULTA"
+    elif velocidad_media > velocidad_max and diferencia >= velocidad_max*0.2:
+        texto = "PUNTOS"
+
+    return texto
+    
     # --- Implementación del alumnado aquí ---
     raise NotImplementedError("Función aún no implementada por el alumnado.")
 
@@ -67,3 +102,5 @@ def main(argv: List[str]) -> None:
         resultado = procesar_linea(linea)   # <- llamada a la función de los alumnos
         print(resultado)                     # <- impresión del resultado
 
+if __name__ == "__main__":
+    main(sys.argv)
