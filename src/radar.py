@@ -67,13 +67,13 @@ def procesar_linea(linea: str) -> str:
     # Comparo velocidad media con velocidad maxima
     diferencia = velocidad_media-velocidad_max
     if velocidad_media < velocidad_max:
-	texto = "OK"
+        texto = "OK"
     elif velocidad_media > velocidad_max and diferencia < velocidad_max*0.2:
-	texto = "MULTA"
+        texto = "MULTA"
     elif velocidad_media > velocidad_max and diferencia >= velocidad_max*0.2:
-	texto = "PUNTOS"
-    elif velocidad_media = 0 and tiempo = 0 and velocidad_max = 0:
-	texto = "ERROR"
+        texto = "PUNTOS"
+    elif velocidad_media == 0 and tiempo == 0 and velocidad_max == 0:
+        texto = "ERROR"
 
     return texto
     
@@ -91,3 +91,5 @@ def main(argv: List[str]) -> None:
         resultado = procesar_linea(linea)   # <- llamada a la función de los alumnos
         print(resultado)                     # <- impresión del resultado
 
+if __name__ == "__main__":
+    main(sys.argv)

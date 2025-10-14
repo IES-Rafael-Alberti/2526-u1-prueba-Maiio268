@@ -29,4 +29,5 @@ from solucion import procesar_linea
 
 # Debes darle contenido a la siguiente función
 def test_procesar_linea(linea, esperado):
-   
+    resultado = procesar_linea("1000 100 36")
+    assert resultado == "OK"   
