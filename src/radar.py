@@ -53,6 +53,24 @@ def procesar_linea(linea: str) -> str:
     2) Calcular la velocidad media y compararla con los umbrales.
     3) Devolver el texto pedido.
     """
+    # Primero separo la cadena en variables, despues convierto las variables a int
+    partes_linea = linea.split(" ")
+    distancia_m = partes_linea[0]
+    vmax_kmh = partes_linea[1]
+    tiempo_s = partes_linea[2]
+    # Las convierto a enteros
+    distancia = int(distancia_m)
+    velocidad_max = int(vmax_kmh)
+    tiempo = int(tiempo_s)
+    # Calculo velocidad media
+    velocidad_media = distancia / tiempo
+    # Comparo velocidad media con velocidad maxima
+    if velocidad_media < velocidad_max:
+	texto = "OK"
+    
+    
+
+
     # --- Implementación del alumnado aquí ---
     raise NotImplementedError("Función aún no implementada por el alumnado.")
 
